@@ -17,57 +17,118 @@ import ru.geekbrains.main.site.at.base.BaseTest;
  * - Блог
  * - Тесты
  * - Карьера
+ * <p>
+ *
+ * /////////////////////////////////////////////////////
+ * >>>Доработка Тест 1
+ * <p>
+ * V 1. Вынести проверку каждой страницы в отдельный тест
+ * V 2. Реализовать проверку отображения блоков Header и Footer на каждой странице сайта (как минимум самого блока)
+ * 3*. (Дополнительное задание, тема следующего занятия):
+ * Создать классы Header и Footer, в которых создать локаторы ко всем элементам в этих блоках
+ * <p>
+ *
+ * /////////////////////////////////////////////////////
+ * >>> Доработка Тест 2
+ * <p>
+ * 1. Перейти на сайт https://geekbrains.ru/courses
+ * 2. Нажать на кнопку Поиск
+ * 3. В поле Поиск ввести текст: java
+ * 4. Проверить что отобразились блоки и в них:
+ * - Профессий не менее чем 2;
+ * - Курсов более 15;
+ * - Вебинаров больше чем 180, но меньше 300;
+ * - Блогов более 300;
+ * - Форумов не 350;
+ * - Тестов не 0;
+ * - В Проектах и компаниях отображается GeekBrains.
  */
 
 public class NavigationTest extends BaseTest {
 
+    //Курсы
     @Test
-    void checkNavigation() throws InterruptedException {
+    void checkNavCoursesTest() throws InterruptedException {
         driver.get("https://geekbrains.ru/career");
 
-        //Курсы
-//        href="/courses"
         WebElement buttonCourses = driver.findElement(By.cssSelector("[class*=\"main-page-hidden\"] [href=\"/courses\"]"));
         buttonCourses.click();
-        WebElement headerPageCourses = driver.findElement(By.cssSelector("[class=\"gb-header__title\"]"));
-        Assertions.assertEquals("Курсы", headerPageCourses.getText());
+        WebElement headerCourses = driver.findElement(By.cssSelector("[class=\"gb-header__title\"]"));
+        Assertions.assertEquals("Курсы", headerCourses.getText());
 
-        driver.findElement(By.cssSelector("div button svg[class=\"svg-icon icon-popup-close-button \"]")).click();
+        checkHeaderTest();
+        checkFooterTest();
+    }
 
-        //Вебинары
-//        href="/events"
+    //Вебинары
+    @Test
+    void checkNavEvents() throws InterruptedException {
+        driver.get("https://geekbrains.ru/career");
+
         WebElement buttonEvents = driver.findElement(By.cssSelector("[class*=\"main-page-hidden\"] [href=\"/events\"]"));
         buttonEvents.click();
         WebElement headerPageEvents = driver.findElement(By.cssSelector("[class=\"gb-header__title\"]"));
         Assertions.assertEquals("Вебинары", headerPageEvents.getText());
 
-        //Форум
-//        href="/topics"
+        checkHeaderTest();
+        checkFooterTest();
+    }
+
+    //Форум
+    @Test
+    void checkNavTopics() throws InterruptedException {
+        driver.get("https://geekbrains.ru/career");
+
         WebElement buttonTopics = driver.findElement(By.cssSelector("[class*=\"main-page-hidden\"] [href=\"/topics\"]"));
         buttonTopics.click();
         WebElement headerPageTopics = driver.findElement(By.cssSelector("[class=\"gb-header__title\"]"));
         Assertions.assertEquals("Форум", headerPageTopics.getText());
 
-        //Блог
-//        href="/posts"
+        checkHeaderTest();
+        checkFooterTest();
+    }
+
+    //Блог
+    @Test
+    void checkNavPosts() throws InterruptedException {
+        driver.get("https://geekbrains.ru/career");
+
         WebElement buttonPosts = driver.findElement(By.cssSelector("[class*=\"main-page-hidden\"] [href=\"/posts\"]"));
         buttonPosts.click();
         WebElement headerPagePosts = driver.findElement(By.cssSelector("[class=\"gb-header__title\"]"));
         Assertions.assertEquals("Блог", headerPagePosts.getText());
 
-        //Тесты
-//        href="/tests"
+        checkHeaderTest();
+        checkFooterTest();
+    }
+
+    //Тесты
+    @Test
+    void checkNavTests() throws InterruptedException {
+        driver.get("https://geekbrains.ru/career");
+
         WebElement buttonTests = driver.findElement(By.cssSelector("[class*=\"main-page-hidden\"] [href=\"/tests\"]"));
         buttonTests.click();
         WebElement headerPageTests = driver.findElement(By.cssSelector("[class=\"gb-header__title\"]"));
         Assertions.assertEquals("Тесты", headerPageTests.getText());
 
-        //Карьер
-//        href="/career"
+        checkHeaderTest();
+        checkFooterTest();
+    }
+
+    //Карьера
+    @Test
+    void checkNavCareer() throws InterruptedException {
+        driver.get("https://geekbrains.ru/career");
+
         WebElement buttonCareer = driver.findElement(By.cssSelector("[class*=\"main-page-hidden\"] [href=\"/career\"]"));
         buttonCareer.click();
         WebElement headerPageCareer = driver.findElement(By.cssSelector("[class=\"gb-header__title\"]"));
         Assertions.assertEquals("Карьера", headerPageCareer.getText());
 
+        checkHeaderTest();
+        checkFooterTest();
     }
+
+
 }
