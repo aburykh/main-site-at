@@ -70,6 +70,11 @@ public class BaseTest {
 
     }
 
+    protected String getTextFromElement(WebElement element){
+        //wait.until(ExpectedConditions.visibilityOf(element));
+        return element.getText();
+    }
+
     @AfterEach
     void tearDown() {
         driver.quit();
