@@ -1,6 +1,7 @@
 package ru.geekbrains.main.site.at;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -8,27 +9,37 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.geekbrains.main.site.at.base.BaseTest;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 
 /**
  * >>> Доработка Тест 2
- *
+ * <p>
  * 1. Перейти на сайт https://geekbrains.ru/courses
  * 2. Нажать на кнопку Поиск
  * 3. В поле Поиск ввести текст: java
  * 4. Проверить что отобразились блоки и в них:
- *      - Профессий не менее чем 2
- *      - Курсов более 15
- *      - Вебинаров больше чем 180, но меньше 300
- *      - Блогов более 300
- *      - Форумов не 350
- *      - Тестов не 0
- *      - В Проектах и компаниях отображается GeekBrains
+ * - Профессий не менее чем 2
+ * - Курсов более 15
+ * - Вебинаров больше чем 180, но меньше 300
+ * - Блогов более 300
+ * - Форумов не 350
+ * - Тестов не 0
+ * - В Проектах и компаниях отображается GeekBrains
+ */
+
+
+/**
+ * /////////////////////////////////////////////////////
+ * Создать ветку lessons 4_hw
+ * V 1. Доработать через Parameterized тест с навигацией
+ * V 2. Изменить во втором тесте проверки на hamcrest
  */
 
 public class SearchTest extends BaseTest {
 
     @Test
+    @DisplayName("Тест поиска на портале GeekBrains")
     void checkSearchTest() {
 
         driver.get("https://geekbrains.ru/career");
@@ -71,93 +82,112 @@ public class SearchTest extends BaseTest {
 //        wait.until(ExpectedConditions.textToBe(By.xpath("//header/h2[text()='Тесты']"),"Тесты"));
 //        wait.until(ExpectedConditions.textToBe(By.xpath("//header/h2[text()='Проекты и компании']"),"Проекты и компании"));
 
-        wait.until(ExpectedConditions.textToBePresentInElement(textProfession,"Профессии"));
+        wait.until(ExpectedConditions.textToBePresentInElement(textProfession, "Профессии"));
+        String textProfActual = textProfession.getText();
+        assertThat(textProfActual, allOf(equalToIgnoringCase("профессии"), containsString("Про")));
+
         String profActual = countProfession.getText();
-        try
-        {
+
+        try {
             int countOfProfessions = Integer.parseInt(profActual.trim());
             System.out.println("countOfProfessions = " + countOfProfessions);
-            Assertions.assertTrue(countOfProfessions >= 2);
-        }
-        catch (NumberFormatException nfe)
-        {
+            //Assertions.assertTrue(countOfProfessions >= 2);
+            assertThat(countOfProfessions, greaterThanOrEqualTo(2));
+        } catch (NumberFormatException nfe) {
             System.out.println("NumberFormatException: " + nfe.getMessage());
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        wait.until(ExpectedConditions.textToBePresentInElement(textCourses, "Курсы"));
+        String textCoursesActual = textCourses.getText();
+        assertThat(textCoursesActual, allOf(equalToIgnoringCase("курсы"), containsString("ур")));
 
-        wait.until(ExpectedConditions.textToBePresentInElement(textCourses,"Курсы"));
         String coursesActual = countCourses.getText();
-        try
-        {
+        try {
             int countOfCourses = Integer.parseInt(coursesActual.trim());
             System.out.println("countOfCourses = " + countOfCourses);
-            Assertions.assertTrue(countOfCourses > 15);
-        }
-        catch (NumberFormatException nfe)
-        {
+            //Assertions.assertTrue(countOfCourses > 15);
+            assertThat(countOfCourses, greaterThan(15));
+        } catch (NumberFormatException nfe) {
             System.out.println("NumberFormatException: " + nfe.getMessage());
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        wait.until(ExpectedConditions.textToBePresentInElement(textWebinars, "Вебинары"));
+        String textWebinarsActual = textWebinars.getText();
+        assertThat(textWebinarsActual, allOf(equalToIgnoringCase("вебинары"), containsString("бинар"), endsWith("ры")));
 
-        wait.until(ExpectedConditions.textToBePresentInElement(textWebinars,"Вебинары"));
         String webinarsActual = countWebinars.getText();
-        try
-        {
+        try {
             int countOfWebinars = Integer.parseInt(webinarsActual.trim());
             System.out.println("countOfWebinars = " + countOfWebinars);
-            Assertions.assertTrue(countOfWebinars > 180 && countOfWebinars < 300);
-        }
-        catch (NumberFormatException nfe)
-        {
+            //Assertions.assertTrue(countOfWebinars > 180 && countOfWebinars < 300);
+            assertThat(countOfWebinars, allOf(greaterThan(180), lessThan(300)));
+        } catch (NumberFormatException nfe) {
             System.out.println("NumberFormatException: " + nfe.getMessage());
         }
 
-        wait.until(ExpectedConditions.textToBePresentInElement(textBlogs,"Блоги"));
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        wait.until(ExpectedConditions.textToBePresentInElement(textBlogs, "Блоги"));
+        String textBlogsActual = textBlogs.getText();
+        assertThat(textBlogsActual, allOf(equalToIgnoringCase("блоги"), containsString("лог")));
+
         String blogsActual = countBlogs.getText();
-        try
-        {
+        try {
             int countOfBlogs = Integer.parseInt(blogsActual.trim());
             System.out.println("countOfBlogs = " + countOfBlogs);
-            Assertions.assertTrue(countOfBlogs > 300);
-        }
-        catch (NumberFormatException nfe)
-        {
+            //Assertions.assertTrue(countOfBlogs > 300);
+            assertThat(countOfBlogs, greaterThan(300));
+        } catch (NumberFormatException nfe) {
             System.out.println("NumberFormatException: " + nfe.getMessage());
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        wait.until(ExpectedConditions.textToBePresentInElement(textForum, "Форум"));
+        String textForumActual = textForum.getText();
+        assertThat(textForumActual, allOf(equalToIgnoringCase("форум"), containsString("ору")));
 
-        wait.until(ExpectedConditions.textToBePresentInElement(textForum,"Форум"));
         String forumsActual = countForums.getText();
-        try
-        {
+        try {
             int countOfForums = Integer.parseInt(forumsActual.trim());
             System.out.println("countOfForums = " + countOfForums);
-            Assertions.assertTrue(countOfForums != 350);
-        }
-        catch (NumberFormatException nfe)
-        {
+            //Assertions.assertTrue(countOfForums != 350);
+            assertThat(countOfForums, not(350));
+        } catch (NumberFormatException nfe) {
             System.out.println("NumberFormatException: " + nfe.getMessage());
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        wait.until(ExpectedConditions.textToBePresentInElement(textTests, "Тесты"));
+        String textTestsActual = textTests.getText();
+        assertThat(textTestsActual, allOf(equalToIgnoringCase("тесты"), containsStringIgnoringCase("тест")));
 
-        wait.until(ExpectedConditions.textToBePresentInElement(textTests,"Тесты"));
         String testsActual = countTests.getText();
-        try
-        {
+        try {
             int countOfTests = Integer.parseInt(testsActual.trim());
             System.out.println("countOfTests = " + countOfTests);
-            Assertions.assertTrue(countOfTests != 0);
-        }
-        catch (NumberFormatException nfe)
-        {
+            //Assertions.assertTrue(countOfTests != 0);
+            assertThat(countOfTests, not(350));
+
+        } catch (NumberFormatException nfe) {
             System.out.println("NumberFormatException: " + nfe.getMessage());
         }
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        wait.until(ExpectedConditions.textToBePresentInElement(textProjectsAndCompanies, "Проекты и компании"));
+        driver.findElement(By.cssSelector("[class=\"company-item__pic\"] [src*=\"63268ac.png\"]")).isDisplayed();
 
-        wait.until(ExpectedConditions.textToBePresentInElement(textProjectsAndCompanies,"Проекты и компании"));
-        WebElement logoGB = driver.findElement(By.cssSelector("[class=\"company-item__pic\"] [src=\"https://d2xzmw6cctk25h.cloudfront.net/coverimage/1361021/attachment/thumb-3a75c9438b95bfc500e2360bf63268ac.png\"]"));
         WebElement textGB = driver.findElement(By.cssSelector("h3 [href=\"/career/682\"]"));
-        assertEquals("Образовательный портал GeekBrains", textGB.getText());
+        Assertions.assertEquals("Образовательный портал GeekBrains", textGB.getText());
+        String textGBActual = textGB.getText();
+        assertThat(textGBActual, allOf(
+                equalToIgnoringCase("образовательный портал geekbrains"),
+                containsStringIgnoringCase("geekbrains"),
+                endsWith("GeekBrains"),
+                equalToCompressingWhiteSpace("Образовательный портал GeekBrains")
+        ));
+
+        WebElement logoGB = driver.findElement(By.cssSelector("[class=\"company-item__pic\"] [src*=\"63268ac.png\"]"));
         logoGB.click();
 
 
@@ -167,7 +197,6 @@ public class SearchTest extends BaseTest {
 //        Assertions.assertEquals("Форум", textForum.getText());
 //        Assertions.assertEquals("Тесты", textTests.getText());
 //        Assertions.assertEquals("Проекты и компании", textProjectsAndCompanies.getText());
-
 
 
     }
