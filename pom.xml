@@ -17,6 +17,8 @@
     <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
     <hamcrest.version>2.2</hamcrest.version>
     <slf4j.version>1.7.30</slf4j.version>
+    <exec-maven.version>1.6.0</exec-maven.version>
+    <webdrivermanager.version>3.8.1</webdrivermanager.version>
 
 </properties>
 
@@ -46,6 +48,33 @@
                 </includes>
             </configuration>
         </plugin>
+
+<!--        <plugin>-->
+<!--            <groupId>org.codehaus.mojo</groupId>-->
+<!--            <artifactId>exec-maven-plugin</artifactId>-->
+<!--            <version>${exec-maven.version}</version>-->
+<!--            <executions>-->
+<!--                <execution>-->
+<!--                    <phase>test</phase>-->
+<!--                    <goals><goal>java</goal></goals>-->
+<!--                    <configuration>-->
+<!--                        <mainClass>org.junit.platform.console.ConsoleLauncher</mainClass>-->
+<!--                        <arguments>-->
+<!--                            <argument>&#45;&#45;scan-class-path</argument>-->
+<!--                            <argument>${project.build.directory}/test-classes</argument>-->
+<!--                        </arguments>-->
+<!--                        <classpathScope>test</classpathScope>-->
+<!--                        <systemProperties>-->
+<!--                            <systemProperty>-->
+<!--                                <key>file.encoding</key>-->
+<!--                                <value>UTF-8</value>-->
+<!--                            </systemProperty>-->
+<!--                        </systemProperties>-->
+<!--                    </configuration>-->
+<!--                </execution>-->
+<!--            </executions>-->
+<!--        </plugin>-->
+
     </plugins>
 </build>
 
@@ -86,6 +115,34 @@
         <artifactId>hamcrest</artifactId>
         <version>${hamcrest.version}</version>
 <!--        <scope>test</scope>-->
+    </dependency>
+
+<!--    &lt;!&ndash; https://mvnrepository.com/artifact/org.codehaus.mojo/exec-maven-plugin &ndash;&gt;-->
+<!--    <dependency>-->
+<!--        <groupId>org.codehaus.mojo</groupId>-->
+<!--        <artifactId>exec-maven-plugin</artifactId>-->
+<!--        <version>${exec-maven.version}</version>-->
+<!--    </dependency>-->
+
+    <!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-console-standalone -->
+    <dependency>
+        <groupId>org.junit.platform</groupId>
+        <artifactId>junit-platform-console-standalone</artifactId>
+        <version>1.6.2</version>
+        <scope>test</scope>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+    <dependency>
+        <groupId>io.github.bonigarcia</groupId>
+        <artifactId>webdrivermanager</artifactId>
+        <version>${webdrivermanager.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-api</artifactId>
+        <version>5.6.2</version>
+        <scope>compile</scope>
     </dependency>
 
 </dependencies>

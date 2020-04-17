@@ -1,5 +1,6 @@
 package ru.geekbrains.main.site.at.base;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.By;
@@ -7,6 +8,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.PageFactory;
+import ru.geekbrains.main.site.at.Header;
 
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
@@ -14,11 +17,13 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BaseTest {
+    protected static Object getButton;
     protected WebDriver driver;
 
     @BeforeEach
-    void setUp() {
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+    protected void setUp() {
+//        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+        WebDriverManager.chromedriver().setup();
 
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
@@ -39,6 +44,11 @@ public class BaseTest {
 
         WebElement checkRegisterInHeader = driver.findElement(By.cssSelector("[class*=\"gb-top-menu__item\"] [href=\"/register\"]"));
         assertEquals(" Регистрация", checkRegisterInHeader.getText());
+
+
+        Header header = PageFactory.initElements(driver, Header.class);
+        PageFactory.initElements(driver, Header.class)
+                .checkElementsInHeader(nameOfElement);
 
     }
 
@@ -70,7 +80,7 @@ public class BaseTest {
 
     }
 
-    protected String getTextFromElement(WebElement element){
+    protected String getTextFromElement(WebElement element) {
         //wait.until(ExpectedConditions.visibilityOf(element));
         return element.getText();
     }
@@ -80,3 +90,40 @@ public class BaseTest {
         driver.quit();
     }
 }
+
+
+/**
+
+ package ru.geekbrains.main.site.at.base;
+
+ import io.github.bonigarcia.wdm.WebDriverManager;
+ import org.junit.jupiter.api.AfterEach;
+ import org.junit.jupiter.api.BeforeEach;
+ import org.openqa.selenium.WebDriver;
+ import org.openqa.selenium.chrome.ChromeDriver;
+ import org.openqa.selenium.chrome.ChromeOptions;
+
+ import java.util.Arrays;
+ import java.util.concurrent.TimeUnit;
+
+ public class BaseTest {
+ protected WebDriver driver;
+
+ @BeforeEach
+ void setUp() {
+ WebDriverManager.chromedriver().setup();
+
+ ChromeOptions options  = new ChromeOptions();
+ options.addArguments("--disable-popup-blocking");
+ options.setExperimentalOption("excludeSwitches", Arrays.asList("disable-popup-blocking"));
+ driver = new ChromeDriver(options);
+
+ driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+ }
+
+ @AfterEach
+ void tearDown() {
+ driver.quit();
+ }
+ }
+ */
