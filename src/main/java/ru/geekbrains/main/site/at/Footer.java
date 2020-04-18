@@ -44,11 +44,6 @@ import static org.hamcrest.Matchers.equalToCompressingWhiteSpace;
 
 
         private Navigation navigation;
-//
-//    public Footer(WebDriver driver) {
-//        navigation = PageFactory.initElements(driver, Navigation.class);
-//
-//    }
 
 
         @FindBy(css = "[class=\"site-footer__icon\"] [class*=\"facebook\"]")
@@ -88,8 +83,6 @@ import static org.hamcrest.Matchers.equalToCompressingWhiteSpace;
         }
 
 
-
-
         @FindBy(css = "[class*=\"footer__links_first-row\"] [href=\"/feedbacks\"]")
         private WebElement checkFeedbacksInFooter;
 
@@ -110,31 +103,6 @@ import static org.hamcrest.Matchers.equalToCompressingWhiteSpace;
         private WebElement checkForBusinessInFooter;
 
 
-        //        public WebElement getCheckFeedbacksInFooter() {
-//            return checkFeedbacksInFooter;
-//        }
-//
-//        public WebElement getCheckHelpInFooter() {
-//            return checkHelpInFooter;
-//        }
-//
-//        public WebElement getCheckCompanyInFooter() {
-//            return checkCompanyInFooter;
-//        }
-//
-//        public WebElement getCheckLicenseInFooter() {
-//            return checkLicenseInFooter;
-//        }
-//
-//        public WebElement getCheckCareerInFooter() {
-//            return checkCareerInFooter;
-//        }
-//
-//        public WebElement getCheckForBusinessInFooter() {
-//            return checkForBusinessInFooter;
-//        }
-
-
         public void checkElementsInFooter() throws RuntimeException {
 
             getCheckFacebookInFooter().isDisplayed();
@@ -142,7 +110,6 @@ import static org.hamcrest.Matchers.equalToCompressingWhiteSpace;
             getCheckInstagramInFooter().isDisplayed();
             getCheckYoutubeInFooter().isDisplayed();
             getCheckTelegramInFooter().isDisplayed();
-
 
 
             String feedbacksInFooterText = checkFeedbacksInFooter.getText();
@@ -165,7 +132,4 @@ import static org.hamcrest.Matchers.equalToCompressingWhiteSpace;
 
         }
 
-
     }
-
-

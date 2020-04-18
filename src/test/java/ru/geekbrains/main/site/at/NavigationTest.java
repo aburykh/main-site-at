@@ -26,9 +26,7 @@ public class NavigationTest extends BaseTest {
         driver.get("https://geekbrains.ru/career");
 
         //Navigation navigation = PageFactory.initElements(driver, Navigation.class);
-        Page page = PageFactory.initElements(driver, Page.class);
-
-
+        //Page page = PageFactory.initElements(driver, Page.class);
         PageFactory.initElements(driver, HomePage.class)
                 .getNavigation().clickButton(namePage)
                 .checkNamePage(namePage);
@@ -42,32 +40,4 @@ public class NavigationTest extends BaseTest {
                 .checkElementsInFooter();
 
     }
-
-    /**
-     void checkNavCoursesTest(String arg) throws InterruptedException {
-     //driver.get("https://geekbrains.ru/career");
-
-     //getButton(blockName).click();
-     //CoursesPage.buttonClick(BaseTest.getButton);
-
-     WebElement buttonCourses = driver.findElement(By.cssSelector("[class*=\"main-page-hidden\"] [href=\"/courses\"]"));
-     buttonCourses.click();
-
-     WebElement headerCourses = driver.findElement(By.cssSelector("[class=\"gb-header__title\"]"));
-     Assertions.assertEquals(arg, headerCourses.getText());
-
-     checkHeaderTest();
-     checkFooterTest();
-
-     WebElement buttonEvents = driver.findElement(By.cssSelector("[class*=\"main-page-hidden\"] [href=\"/events\"]"));
-     buttonEvents.click();
-     WebElement headerPageEvents = driver.findElement(By.cssSelector("[class=\"gb-header__title\"]"));
-     Assertions.assertEquals(arg, headerPageEvents.getText());
-
-     checkHeaderTest();
-     checkFooterTest();
-     }
-     */
-
-
 }

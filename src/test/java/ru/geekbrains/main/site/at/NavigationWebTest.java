@@ -1,3 +1,4 @@
+/**
 package ru.geekbrains.main.site.at;
 
 import org.junit.jupiter.api.DisplayName;
@@ -31,4 +32,4 @@ public class NavigationWebTest extends BaseTest {
                 .checkNamePage(namePage);
     }
 
-}
+}*/

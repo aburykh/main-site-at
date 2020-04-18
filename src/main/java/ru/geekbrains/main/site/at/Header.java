@@ -29,9 +29,6 @@ public class Header {
     @FindBy(css = "[class*=\"gb-top-menu__item\"] [class=\"svg-icon icon-search \"]")
     private WebElement searchIcon;
 
-//    @FindBy(css = "[class*=\"gb-top-menu__item\"]")
-//    private WebElement checkFieldInHeader;
-
     @FindBy(css = "[class*=\"gb-top-menu__item\"] [href=\"/login\"]")
     private WebElement checkLoginInHeader;
 
@@ -50,10 +47,6 @@ public class Header {
     public WebElement getSearchIcon() {
         return searchIcon;
     }
-
-//    public WebElement getCheckFieldInHeader() {
-//        return checkFieldInHeader;
-//    }
 
     public WebElement getCheckLoginInHeader() {
         return checkLoginInHeader;
@@ -75,43 +68,4 @@ public class Header {
         assertThat(registerInHeaderText, equalToCompressingWhiteSpace("Регистрация"));
 
     }
-
-    private WebDriver driver;
-
-//    public Header clickButton(String nameButton) throws NotFoundException {
-//        switch (nameButton) {
-//            case "Иконка поиска": {
-//                getSearchIcon().isDisplayed();
-//            }
-//
-//            case "Вход": {
-//                buttonEvents.click();
-//            }
-//
-//            case "Регистрация": {
-//                buttonTopics.click();
-//            }
-//
-//            break;
-//            default: {
-//                throw new NotFoundException("Не найдена кнопка с именем: " + nameButton);
-//            }
-//        }
-//
-//        return PageFactory.initElements(driver, Header.class);
-//
-//    }
-
-/**
-    public void checkHeaderTest() {
-
-
-        WebElement checkLoginInHeader = driver.findElement(By.cssSelector("[class=\"gb-top-menu__item\"] [href=\"/login\"]"));
-        assertEquals(" Вход", checkLoginInHeader.getText());
-
-        WebElement checkRegisterInHeader = driver.findElement(By.cssSelector("[class*=\"gb-top-menu__item\"] [href=\"/register\"]"));
-        assertEquals(" Регистрация", checkRegisterInHeader.getText());
-    }
-*/
-
 }

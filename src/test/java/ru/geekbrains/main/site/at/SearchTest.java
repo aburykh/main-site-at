@@ -50,10 +50,10 @@ public class SearchTest extends BaseTest {
         WebElement countTests = driver.findElement(By.cssSelector("[class=\"search-page-tabs\"] [data-tab=\"tests\"] span"));
 
         WebElement textProjectsAndCompanies = driver.findElement(By.xpath("//header/h2[text()='Проекты и компании']"));
-        //WebElement countCompanies = driver.findElement(By.cssSelector("[class=\"search-page-tabs\"] [data-tab=\"companies\"] span"));
 
 
-//
+
+
 //        wait.until(ExpectedConditions.textToBe(By.xpath("//header/h2[text()='Профессии']"),"Профессии"));
 //        wait.until(ExpectedConditions.textToBe(By.xpath("//header/h2[text()='Курсы']"),"Курсы"));
 //        wait.until(ExpectedConditions.textToBe(By.xpath("//header/h2[text()='Вебинары']"),"Вебинары"));
