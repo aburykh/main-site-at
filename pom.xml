@@ -15,6 +15,7 @@
     <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
     <annotations-java5.version>19.0.0</annotations-java5.version>
     <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+    <hamcrest.version>2.2</hamcrest.version>
     <slf4j.version>1.7.30</slf4j.version>
 
 </properties>
@@ -77,6 +78,14 @@
         <artifactId>slf4j-simple</artifactId>
         <version>${slf4j.version}</version>
         <scope>test</scope>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest -->
+    <dependency>
+        <groupId>org.hamcrest</groupId>
+        <artifactId>hamcrest</artifactId>
+        <version>${hamcrest.version}</version>
+<!--        <scope>test</scope>-->
     </dependency>
 
 </dependencies>

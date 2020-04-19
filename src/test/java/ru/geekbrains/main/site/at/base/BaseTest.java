@@ -1,6 +1,5 @@
 package ru.geekbrains.main.site.at.base;
 
-import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.By;
@@ -71,7 +70,7 @@ public class BaseTest {
 
     }
 
-    protected String getTextFromElement(@NotNull WebElement element) {
+    protected String getTextFromElement(WebElement element) {
         //wait.until(ExpectedConditions.visibilityOf(element));
         return element.getText();
     }
