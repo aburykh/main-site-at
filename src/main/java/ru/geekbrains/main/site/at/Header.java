@@ -36,25 +36,25 @@ public class Header {
     private WebElement checkRegisterInHeader;
 
 
-    public WebElement getHeaderPage() {
-        return headerPage;
-    }
-
-    public WebElement getButtonPopUpClosed() {
-        return buttonPopUpClosed;
-    }
-
     public WebElement getSearchIcon() {
         return searchIcon;
     }
 
-    public WebElement getCheckLoginInHeader() {
-        return checkLoginInHeader;
-    }
-
-    public WebElement getCheckRegisterInHeader() {
-        return checkRegisterInHeader;
-    }
+//    public WebElement getHeaderPage() {
+//        return headerPage;
+//    }
+//
+//    public WebElement getButtonPopUpClosed() {
+//        return buttonPopUpClosed;
+//    }
+//
+//    public WebElement getCheckLoginInHeader() {
+//        return checkLoginInHeader;
+//    }
+//
+//    public WebElement getCheckRegisterInHeader() {
+//        return checkRegisterInHeader;
+//    }
 
 
     public void checkElementsInHeader() throws RuntimeException {
