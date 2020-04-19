@@ -1,5 +1,6 @@
 package ru.geekbrains.main.site.at.base;
 
+import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.By;
@@ -26,11 +27,11 @@ public class BaseTest {
         options.addArguments("--disable-popup-blocking");
         options.setExperimentalOption("excludeSwitches", Arrays.asList("disable-popup-blocking"));
         driver = new ChromeDriver(options);
-
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.get("https://geekbrains.ru/career");
     }
 
-    public void checkHeaderTest() throws InterruptedException {
+    public void checkHeaderTest() {
 
         driver.findElement(By.cssSelector("[class=\"gb-top-menu__item\"] [class=\"svg-icon icon-search \"]"));
 
@@ -42,7 +43,7 @@ public class BaseTest {
 
     }
 
-    public void checkFooterTest() throws InterruptedException {
+    public void checkFooterTest() {
 
         driver.findElement(By.cssSelector("[class=\"site-footer__icon\"] [class*=\"facebook\"]"));
         driver.findElement(By.cssSelector("[class=\"site-footer__icon\"] [class*=\"vk\"]"));
@@ -70,13 +71,15 @@ public class BaseTest {
 
     }
 
-    protected String getTextFromElement(WebElement element){
+    protected String getTextFromElement(@NotNull WebElement element) {
         //wait.until(ExpectedConditions.visibilityOf(element));
         return element.getText();
     }
 
     @AfterEach
     void tearDown() {
+        checkHeaderTest();
+        checkFooterTest();
         driver.quit();
     }
 }
