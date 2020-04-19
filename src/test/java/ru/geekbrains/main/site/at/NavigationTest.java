@@ -17,53 +17,78 @@ import ru.geekbrains.main.site.at.base.BaseTest;
  * - Блог
  * - Тесты
  * - Карьера
+ * <p>
+ * <p>
+ * /////////////////////////////////////////////////////
+ * >>>Доработка Тест 1
+ * <p>
+ * V 1. Вынести проверку каждой страницы в отдельный тест
+ * V 2. Реализовать проверку отображения блоков Header и Footer на каждой странице сайта (как минимум самого блока)
+ * 3*. (Дополнительное задание, тема следующего занятия):
+ * Создать классы Header и Footer, в которых создать локаторы ко всем элементам в этих блоках
  */
 
 public class NavigationTest extends BaseTest {
 
+    //Курсы
     @Test
-    void checkNavigation() throws InterruptedException {
-        driver.get("https://geekbrains.ru/career");
+    void checkNavCoursesTest() {
 
-        //Курсы
-//        href="/courses"
         WebElement buttonCourses = driver.findElement(By.cssSelector("[class*=\"main-page-hidden\"] [href=\"/courses\"]"));
         buttonCourses.click();
-        WebElement headerPageCourses = driver.findElement(By.cssSelector("[class=\"gb-header__title\"]"));
-        Assertions.assertEquals("Курсы", headerPageCourses.getText());
+        WebElement headerCourses = driver.findElement(By.cssSelector("[class=\"gb-header__title\"]"));
+        Assertions.assertEquals("Курсы", headerCourses.getText());
 
-        driver.findElement(By.cssSelector("div button svg[class=\"svg-icon icon-popup-close-button \"]")).click();
+    }
 
-        //Вебинары
-//        href="/events"
+    //Вебинары
+    @Test
+    void checkNavEvents() {
+
         WebElement buttonEvents = driver.findElement(By.cssSelector("[class*=\"main-page-hidden\"] [href=\"/events\"]"));
         buttonEvents.click();
         WebElement headerPageEvents = driver.findElement(By.cssSelector("[class=\"gb-header__title\"]"));
         Assertions.assertEquals("Вебинары", headerPageEvents.getText());
 
-        //Форум
-//        href="/topics"
+    }
+
+    //Форум
+    @Test
+    void checkNavTopics() {
+
         WebElement buttonTopics = driver.findElement(By.cssSelector("[class*=\"main-page-hidden\"] [href=\"/topics\"]"));
         buttonTopics.click();
         WebElement headerPageTopics = driver.findElement(By.cssSelector("[class=\"gb-header__title\"]"));
         Assertions.assertEquals("Форум", headerPageTopics.getText());
 
-        //Блог
-//        href="/posts"
+    }
+
+    //Блог
+    @Test
+    void checkNavPosts() {
+
         WebElement buttonPosts = driver.findElement(By.cssSelector("[class*=\"main-page-hidden\"] [href=\"/posts\"]"));
         buttonPosts.click();
         WebElement headerPagePosts = driver.findElement(By.cssSelector("[class=\"gb-header__title\"]"));
         Assertions.assertEquals("Блог", headerPagePosts.getText());
 
-        //Тесты
-//        href="/tests"
+    }
+
+    //Тесты
+    @Test
+    void checkNavTests() {
+
         WebElement buttonTests = driver.findElement(By.cssSelector("[class*=\"main-page-hidden\"] [href=\"/tests\"]"));
         buttonTests.click();
         WebElement headerPageTests = driver.findElement(By.cssSelector("[class=\"gb-header__title\"]"));
         Assertions.assertEquals("Тесты", headerPageTests.getText());
 
-        //Карьер
-//        href="/career"
+    }
+
+    //Карьера
+    @Test
+    void checkNavCareer() {
+
         WebElement buttonCareer = driver.findElement(By.cssSelector("[class*=\"main-page-hidden\"] [href=\"/career\"]"));
         buttonCareer.click();
         WebElement headerPageCareer = driver.findElement(By.cssSelector("[class=\"gb-header__title\"]"));
