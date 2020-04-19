@@ -21,7 +21,7 @@ import ru.geekbrains.main.site.at.base.BaseTest;
  * - Тесты
  * - Карьера
  * <p>
- *
+ * <p>
  * /////////////////////////////////////////////////////
  * >>>Доработка Тест 1
  * <p>
@@ -46,102 +46,83 @@ public class NavigationTest extends BaseTest {
     //@Test
     @ParameterizedTest
     @DisplayName("Тест страницы \"Курсы\"")
-    @ValueSource(strings = {"Что-то там ещё", "Курсы" })
+    @ValueSource(strings = {"Что-то там ещё", "Курсы"})
     void checkNavCoursesTest(String arg) throws InterruptedException {
-        driver.get("https://geekbrains.ru/career");
 
         WebElement buttonCourses = driver.findElement(By.cssSelector("[class*=\"main-page-hidden\"] [href=\"/courses\"]"));
         buttonCourses.click();
         WebElement headerCourses = driver.findElement(By.cssSelector("[class=\"gb-header__title\"]"));
         Assertions.assertEquals(arg, headerCourses.getText());
 
-        checkHeaderTest();
-        checkFooterTest();
     }
 
     //Вебинары
     //@Test
     @ParameterizedTest
     @DisplayName("Тест страницы \"Вебинары\"")
-    @ValueSource(strings = {"Вебинары", "Курсы" })
+    @ValueSource(strings = {"Вебинары", "Курсы"})
     void checkNavEvents(String arg) throws InterruptedException {
-        driver.get("https://geekbrains.ru/career");
 
         WebElement buttonEvents = driver.findElement(By.cssSelector("[class*=\"main-page-hidden\"] [href=\"/events\"]"));
         buttonEvents.click();
         WebElement headerPageEvents = driver.findElement(By.cssSelector("[class=\"gb-header__title\"]"));
         Assertions.assertEquals(arg, headerPageEvents.getText());
 
-        checkHeaderTest();
-        checkFooterTest();
     }
 
     //Форум
     //@Test
     @ParameterizedTest
     @DisplayName("Тест страницы \"Форум\"")
-    @ValueSource(strings = {"Вебинары", "Курсы", "Форум" })
+    @ValueSource(strings = {"Вебинары", "Курсы", "Форум"})
     void checkNavTopics(String arg) throws InterruptedException {
-        driver.get("https://geekbrains.ru/career");
 
         WebElement buttonTopics = driver.findElement(By.cssSelector("[class*=\"main-page-hidden\"] [href=\"/topics\"]"));
         buttonTopics.click();
         WebElement headerPageTopics = driver.findElement(By.cssSelector("[class=\"gb-header__title\"]"));
         Assertions.assertEquals(arg, headerPageTopics.getText());
 
-        checkHeaderTest();
-        checkFooterTest();
     }
 
     //Блог
     //@Test
     @ParameterizedTest
     @DisplayName("Тест страницы \"Блог\"")
-    @ValueSource(strings = {"Вебинары", "Блог", "Форум" })
+    @ValueSource(strings = {"Вебинары", "Блог", "Форум"})
     void checkNavPosts(String arg) throws InterruptedException {
-        driver.get("https://geekbrains.ru/career");
 
         WebElement buttonPosts = driver.findElement(By.cssSelector("[class*=\"main-page-hidden\"] [href=\"/posts\"]"));
         buttonPosts.click();
         WebElement headerPagePosts = driver.findElement(By.cssSelector("[class=\"gb-header__title\"]"));
         Assertions.assertEquals(arg, headerPagePosts.getText());
 
-        checkHeaderTest();
-        checkFooterTest();
     }
 
     //Тесты
     //@Test
     @ParameterizedTest
     @DisplayName("Тест страницы \"Тесты\"")
-    @ValueSource(strings = { "Вебинары", "Тесты" })
+    @ValueSource(strings = {"Вебинары", "Тесты"})
     void checkNavTests(String arg) throws InterruptedException {
-        driver.get("https://geekbrains.ru/career");
 
         WebElement buttonTests = driver.findElement(By.cssSelector("[class*=\"main-page-hidden\"] [href=\"/tests\"]"));
         buttonTests.click();
         WebElement headerPageTests = driver.findElement(By.cssSelector("[class=\"gb-header__title\"]"));
         Assertions.assertEquals(arg, headerPageTests.getText());
 
-        checkHeaderTest();
-        checkFooterTest();
     }
 
     //Карьера
     //@Test
     @ParameterizedTest
     @DisplayName("Тест страницы \"Карьера\"")
-    @ValueSource(strings = {"Вебинары", "Карьера", "Карьера" })
+    @ValueSource(strings = {"Вебинары", "Карьера", "Карьера"})
     void checkNavCareer(String arg) throws InterruptedException {
-        driver.get("https://geekbrains.ru/tests");
 
         WebElement buttonCareer = driver.findElement(By.cssSelector("[class*=\"main-page-hidden\"] [href=\"/career\"]"));
         buttonCareer.click();
         WebElement headerPageCareer = driver.findElement(By.cssSelector("[class=\"gb-header__title\"]"));
         Assertions.assertEquals(arg, headerPageCareer.getText());
 
-        checkHeaderTest();
-        checkFooterTest();
     }
-
 }
