@@ -1,73 +1,43 @@
 package ru.geekbrains.main.site.at;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.openqa.selenium.support.PageFactory;
 import ru.geekbrains.main.site.at.base.BaseTest;
 
-/**
- * 1. Перейти на сайт https://geekbrains.ru/courses
- * 2. Нажать на кнопку Курсы
- * 3. Проверить что страница Курсы открылась
- * 4. Повторить для:
- * - Курсы
- * - Вебинары
- * - Форум
- * - Блог
- * - Тесты
- * - Карьера
- */
+import java.util.stream.Stream;
+
+
+@DisplayName("Тесты навигации по сайту GeekBrains")
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 
 public class NavigationTest extends BaseTest {
 
-    @Test
-    void checkNavigation() throws InterruptedException {
+
+    static Stream<String> stringProvider() {
+        return Stream.of("Курсы", "Вебинары", "Форум", "Блог", "Тесты", "Карьера");
+    }
+
+    @ParameterizedTest(name = "{index} ==> Проверка перехода на страницу \"{0}\"...")
+    @MethodSource("stringProvider")
+    void checkNavigation(String namePage) throws InterruptedException {
         driver.get("https://geekbrains.ru/career");
 
-        //Курсы
-//        href="/courses"
-        WebElement buttonCourses = driver.findElement(By.cssSelector("[class*=\"main-page-hidden\"] [href=\"/courses\"]"));
-        buttonCourses.click();
-        WebElement headerPageCourses = driver.findElement(By.cssSelector("[class=\"gb-header__title\"]"));
-        Assertions.assertEquals("Курсы", headerPageCourses.getText());
+        //Navigation navigation = PageFactory.initElements(driver, Navigation.class);
+        //Page page = PageFactory.initElements(driver, Page.class);
+        PageFactory.initElements(driver, HomePage.class)
+                .getNavigation().clickButton(namePage)
+                .checkNamePage(namePage);
 
-        driver.findElement(By.cssSelector("div button svg[class=\"svg-icon icon-popup-close-button \"]")).click();
+        //Header header = PageFactory.initElements(driver, Header.class);
+        PageFactory.initElements(driver, Header.class)
+                .checkElementsInHeader();
 
-        //Вебинары
-//        href="/events"
-        WebElement buttonEvents = driver.findElement(By.cssSelector("[class*=\"main-page-hidden\"] [href=\"/events\"]"));
-        buttonEvents.click();
-        WebElement headerPageEvents = driver.findElement(By.cssSelector("[class=\"gb-header__title\"]"));
-        Assertions.assertEquals("Вебинары", headerPageEvents.getText());
-
-        //Форум
-//        href="/topics"
-        WebElement buttonTopics = driver.findElement(By.cssSelector("[class*=\"main-page-hidden\"] [href=\"/topics\"]"));
-        buttonTopics.click();
-        WebElement headerPageTopics = driver.findElement(By.cssSelector("[class=\"gb-header__title\"]"));
-        Assertions.assertEquals("Форум", headerPageTopics.getText());
-
-        //Блог
-//        href="/posts"
-        WebElement buttonPosts = driver.findElement(By.cssSelector("[class*=\"main-page-hidden\"] [href=\"/posts\"]"));
-        buttonPosts.click();
-        WebElement headerPagePosts = driver.findElement(By.cssSelector("[class=\"gb-header__title\"]"));
-        Assertions.assertEquals("Блог", headerPagePosts.getText());
-
-        //Тесты
-//        href="/tests"
-        WebElement buttonTests = driver.findElement(By.cssSelector("[class*=\"main-page-hidden\"] [href=\"/tests\"]"));
-        buttonTests.click();
-        WebElement headerPageTests = driver.findElement(By.cssSelector("[class=\"gb-header__title\"]"));
-        Assertions.assertEquals("Тесты", headerPageTests.getText());
-
-        //Карьер
-//        href="/career"
-        WebElement buttonCareer = driver.findElement(By.cssSelector("[class*=\"main-page-hidden\"] [href=\"/career\"]"));
-        buttonCareer.click();
-        WebElement headerPageCareer = driver.findElement(By.cssSelector("[class=\"gb-header__title\"]"));
-        Assertions.assertEquals("Карьера", headerPageCareer.getText());
+        //Footer footer = PageFactory.initElements(driver, Footer.class);
+        PageFactory.initElements(driver, Footer.class)
+                .checkElementsInFooter();
 
     }
 }
