@@ -97,14 +97,9 @@ public class SearchPage {
         assertThat(textBlock, allOf(equalToIgnoringCase("профессии"), containsString("Про")));
 
         String countInBlock = countProfession.getText();
-
-        try {
-            int countOfProfessions = Integer.parseInt(countInBlock.trim());
-            System.out.println("countOfProfessions = " + countOfProfessions);
-            assertThat(countOfProfessions, greaterThanOrEqualTo(2));
-        } catch (NumberFormatException nfe) {
-            System.out.println("NumberFormatException: " + nfe.getMessage());
-        }
+        int countOfProfessions = Integer.parseInt(countInBlock.trim());
+        System.out.println("countOfProfessions = " + countOfProfessions);
+        assertThat(countOfProfessions, greaterThanOrEqualTo(2));
         return this;
     }
 
@@ -116,13 +111,9 @@ public class SearchPage {
         assertThat(textBlock, allOf(equalToIgnoringCase("курсы"), containsString("ур")));
 
         String coursesActual = countCourses.getText();
-        try {
-            int countOfCourses = Integer.parseInt(coursesActual.trim());
-            System.out.println("countOfCourses = " + countOfCourses);
-            assertThat(countOfCourses, greaterThan(15));
-        } catch (NumberFormatException nfe) {
-            System.out.println("NumberFormatException: " + nfe.getMessage());
-        }
+        int countOfCourses = Integer.parseInt(coursesActual.trim());
+        System.out.println("countOfCourses = " + countOfCourses);
+        assertThat(countOfCourses, greaterThan(15));
         return this;
     }
 
@@ -134,13 +125,9 @@ public class SearchPage {
         assertThat(textBlock, allOf(equalToIgnoringCase("вебинары"), containsString("бинар"), endsWith("ры")));
 
         String webinarsActual = countWebinars.getText();
-        try {
-            int countOfWebinars = Integer.parseInt(webinarsActual.trim());
-            System.out.println("countOfWebinars = " + countOfWebinars);
-            assertThat(countOfWebinars, allOf(greaterThan(180), lessThan(300)));
-        } catch (NumberFormatException nfe) {
-            System.out.println("NumberFormatException: " + nfe.getMessage());
-        }
+        int countOfWebinars = Integer.parseInt(webinarsActual.trim());
+        System.out.println("countOfWebinars = " + countOfWebinars);
+        assertThat(countOfWebinars, allOf(greaterThan(180), lessThan(300)));
         return this;
     }
 
@@ -152,13 +139,9 @@ public class SearchPage {
         assertThat(textBlock, allOf(equalToIgnoringCase("блоги"), containsString("лог")));
 
         String blogsActual = countBlogs.getText();
-        try {
-            int countOfBlogs = Integer.parseInt(blogsActual.trim());
-            System.out.println("countOfBlogs = " + countOfBlogs);
-            assertThat(countOfBlogs, greaterThan(300));
-        } catch (NumberFormatException nfe) {
-            System.out.println("NumberFormatException: " + nfe.getMessage());
-        }
+        int countOfBlogs = Integer.parseInt(blogsActual.trim());
+        System.out.println("countOfBlogs = " + countOfBlogs);
+        assertThat(countOfBlogs, greaterThan(300));
         return this;
     }
 
@@ -170,13 +153,9 @@ public class SearchPage {
         assertThat(textBlock, allOf(equalToIgnoringCase("форум"), containsString("ору")));
 
         String forumsActual = countForums.getText();
-        try {
-            int countOfForums = Integer.parseInt(forumsActual.trim());
-            System.out.println("countOfForums = " + countOfForums);
-            assertThat(countOfForums, not(350));
-        } catch (NumberFormatException nfe) {
-            System.out.println("NumberFormatException: " + nfe.getMessage());
-        }
+        int countOfForums = Integer.parseInt(forumsActual.trim());
+        System.out.println("countOfForums = " + countOfForums);
+        assertThat(countOfForums, not(350));
         return this;
     }
 
@@ -188,14 +167,10 @@ public class SearchPage {
         assertThat(textBlock, allOf(equalToIgnoringCase("тесты"), containsStringIgnoringCase("тест")));
 
         String testsActual = countTests.getText();
-        try {
-            int countOfTests = Integer.parseInt(testsActual.trim());
-            System.out.println("countOfTests = " + countOfTests);
-            assertThat(countOfTests, not(350));
+        int countOfTests = Integer.parseInt(testsActual.trim());
+        System.out.println("countOfTests = " + countOfTests);
+        assertThat(countOfTests, not(350));
 
-        } catch (NumberFormatException nfe) {
-            System.out.println("NumberFormatException: " + nfe.getMessage());
-        }
         return this;
     }
 
