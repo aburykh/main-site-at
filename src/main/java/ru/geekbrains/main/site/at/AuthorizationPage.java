@@ -1,5 +1,6 @@
 package ru.geekbrains.main.site.at;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,6 +23,7 @@ public class AuthorizationPage {
     @FindBy(css = "[data-testid=\"login-submit\"")
     private WebElement buttonSingInd;
 
+    @Step("авторизация с логином: {login} и паролем: {password}")
     public HomePage authorization(String login, String password) {
         inputLogin.sendKeys(login);
         inputPassword.sendKeys(password);

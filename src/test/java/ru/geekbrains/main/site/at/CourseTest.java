@@ -1,5 +1,7 @@
 package ru.geekbrains.main.site.at;
 
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.parallel.Execution;
@@ -17,10 +19,12 @@ import ru.geekbrains.main.site.at.base.BaseTest;
  */
 
 @Execution(ExecutionMode.CONCURRENT)
-@DisplayName("Проверка Авторизации с перехоом Курсы")
+@DisplayName("Проверка страницы Курсы")
+@Feature(value = "Проверка страниц")
+@Story(value = "Проверка страницы Курсы")
 public class CourseTest extends BaseTest {
 
-    @DisplayName("Вход с валидными логин/пароль")
+    @DisplayName("Вход с валидными логином и паролем")
     @Test
     void checkSingInValidLogin() {
         String login = "hao17583@bcaoo.com";

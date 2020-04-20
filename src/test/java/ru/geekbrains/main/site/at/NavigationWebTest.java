@@ -13,6 +13,8 @@ import java.util.stream.Stream;
 
 @Execution(ExecutionMode.CONCURRENT)
 @DisplayName("Проверка навигации")
+@Feature(value = "Проверка страниц")
+@Story(value = "Проверка навигации")
 public class NavigationWebTest extends BaseTest {
 
     static Stream<String> stringProvider() {

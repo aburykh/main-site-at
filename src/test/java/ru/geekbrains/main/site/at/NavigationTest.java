@@ -1,7 +1,11 @@
 package ru.geekbrains.main.site.at;
 
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.support.PageFactory;
@@ -12,6 +16,9 @@ import java.util.stream.Stream;
 
 @DisplayName("Тесты навигации по сайту GeekBrains")
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@Execution(value = ExecutionMode.CONCURRENT)
+@Feature(value = "Проверка страниц")
+@Story(value = "Проверка навигации")
 
 public class NavigationTest extends BaseTest {
 
@@ -20,6 +27,7 @@ public class NavigationTest extends BaseTest {
         return Stream.of("Курсы", "Вебинары", "Форум", "Блог", "Тесты", "Карьера");
     }
 
+    @DisplayName("Нажатие в навигации")
     @ParameterizedTest(name = "{index} ==> Проверка перехода на страницу \"{0}\"...")
     @MethodSource("stringProvider")
     void checkNavigation(String namePage) throws InterruptedException {

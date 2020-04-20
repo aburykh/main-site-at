@@ -11,6 +11,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.geekbrains.main.site.at.base.BaseTest;
 
 @Execution(ExecutionMode.CONCURRENT)
+@DisplayName("Проверка Поиска")
+@Feature(value = "Проверка страниц")
+@Story(value = "Проверка Поиска")
 public class SearchWebTest extends BaseTest {
 //    Перейти на сайт https://geekbrains.ru/courses
 //    Нажать на кнопку Поиск
@@ -25,6 +28,7 @@ public class SearchWebTest extends BaseTest {
 //            Проекты и компании
 
     @Test
+    @DisplayName("Проверка по ключевому слову Java")
     void name() {
         driver.get("https://geekbrains.ru/career");
         WebDriverWait wait = new WebDriverWait(driver, 40);

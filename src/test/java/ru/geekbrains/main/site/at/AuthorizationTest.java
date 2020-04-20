@@ -1,5 +1,8 @@
 package ru.geekbrains.main.site.at;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Issue;
+import io.qameta.allure.TmsLink;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.parallel.Execution;
@@ -21,6 +24,9 @@ public class AuthorizationTest extends BaseTest {
 
     @DisplayName("Вход с валидными логин/пароль")
     @Test
+    @Issue(value = "https://google.com")
+    @TmsLink(value = "https://ya.ru")
+    @Description(value = "Описание теста")
     void checkSingInValidLogin() {
         String login = "hao17583@bcaoo.com";
         String password = "hao17583";
