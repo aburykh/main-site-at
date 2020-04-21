@@ -10,7 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.geekbrains.main.site.at.base.BaseTest;
 
-@Execution(ExecutionMode.CONCURRENT)
+@Execution(ExecutionMode.SAME_THREAD)
 @DisplayName("Проверка Поиска")
 @Feature(value = "Проверка страниц")
 @Story(value = "Проверка Поиска")
