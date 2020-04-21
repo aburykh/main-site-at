@@ -4,7 +4,6 @@ import ru.geekbrains.main.site.at.Page;
 
 public class Navigation {
 
-    //123
     public Page clickButton(String nameButton) throws NotFoundPageException {
         switch (nameButton){
             case "Курсы":{

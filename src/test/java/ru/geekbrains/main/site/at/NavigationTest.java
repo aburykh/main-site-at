@@ -34,16 +34,16 @@ public class NavigationTest extends BaseTest {
         driver.get("https://geekbrains.ru/career");
 
         //Navigation navigation = PageFactory.initElements(driver, Navigation.class);
-        //Page page = PageFactory.initElements(driver, Page.class);
+        Page page = PageFactory.initElements(driver, Page.class);
         PageFactory.initElements(driver, HomePage.class)
                 .getNavigation().clickButton(namePage)
                 .checkNamePage(namePage);
 
-        //Header header = PageFactory.initElements(driver, Header.class);
+        Header header = PageFactory.initElements(driver, Header.class);
         PageFactory.initElements(driver, Header.class)
                 .checkElementsInHeader();
 
-        //Footer footer = PageFactory.initElements(driver, Footer.class);
+        Footer footer = PageFactory.initElements(driver, Footer.class);
         PageFactory.initElements(driver, Footer.class)
                 .checkElementsInFooter();
 
