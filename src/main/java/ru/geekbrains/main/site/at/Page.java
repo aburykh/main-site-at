@@ -1,5 +1,6 @@
 package ru.geekbrains.main.site.at;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -24,11 +25,13 @@ public class Page {
     private WebElement buttonPopUpClosed;
 
 
+    @Step("Закрытие Pop-UP окна")
     public Page popUpClosed() {
         buttonPopUpClosed.click();
         return this;
     }
 
+    @Step("Проверка загрузки заголовка страницы {checkNamePage}")
     public Page checkNamePage(String exampleNamePage) {
         String headerPageText = headerPage.getText();
         assertThat(headerPageText, equalToCompressingWhiteSpace(exampleNamePage));

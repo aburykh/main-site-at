@@ -1,5 +1,6 @@
 package ru.geekbrains.main.site.at;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -103,6 +104,7 @@ import static org.hamcrest.Matchers.equalToCompressingWhiteSpace;
         private WebElement checkForBusinessInFooter;
 
 
+        @Step("Проверка отображения элементов в Footer'е")
         public void checkElementsInFooter() throws RuntimeException {
 
             getCheckFacebookInFooter().isDisplayed();

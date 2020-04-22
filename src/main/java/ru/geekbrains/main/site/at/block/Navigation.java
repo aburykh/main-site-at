@@ -1,5 +1,6 @@
 package ru.geekbrains.main.site.at.block;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -38,7 +39,7 @@ public class Navigation {
         this.driver = driver;
     }
 
-
+    @Step("Проверка нажатия на кнопку {nameButton}")
     public BasePage clickButton(String nameButton) {
         switch (nameButton) {
             case "Главная": {

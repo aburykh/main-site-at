@@ -1,5 +1,6 @@
 package ru.geekbrains.main.site.at;
 
+import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
@@ -28,6 +29,7 @@ public class NavigationTest extends BaseTest {
     }
 
     @DisplayName("Нажатие в навигации")
+    @Description(value = "Тест-кейс позволяет проверить переход по страницам, используя панель навигации на портале, с последующей проверкой загрузки элементов в header и footer на каждой странице")
     @ParameterizedTest(name = "{index} ==> Проверка перехода на страницу \"{0}\"...")
     @MethodSource("stringProvider")
     void checkNavigation(String namePage) throws InterruptedException {

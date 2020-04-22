@@ -1,5 +1,6 @@
 package ru.geekbrains.main.site.at;
 
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -76,19 +77,21 @@ public class SearchPage {
     private WebElement textGB;
 
 
+    @Step("Проверка нажатия на иконку поиска")
     public SearchPage clickSearch() {
         new WebDriverWait(driver, 30)
                 .until(ExpectedConditions.elementToBeClickable(buttonSearch));
         buttonSearch.click();
         return PageFactory.initElements(driver, SearchPage.class);
     }
-
+    @Step("Ввод в строку поиска ключевого слова \"java\"")
     public SearchPage inputSearch() {
         WebElement inputSearch = driver.findElement(By.cssSelector("input[class=\"search-panel__search-field\"]"));
         inputSearch.sendKeys("java");
         return PageFactory.initElements(driver, SearchPage.class);
     }
 
+    @Step("Проверка отображения блока \"Профессии\" и проверка количественного показателя (>= 2)")
     public SearchPage checkProfession() {
         new WebDriverWait(driver, 30)
                 .until(ExpectedConditions.textToBePresentInElement(textProfession, "Профессии"));
@@ -103,6 +106,7 @@ public class SearchPage {
         return this;
     }
 
+    @Step("Проверка отображения блока \"Курсы\" и проверка количественного показателя (> 15)")
     public SearchPage checkCourses() {
         new WebDriverWait(driver, 30)
                 .until(ExpectedConditions.textToBePresentInElement(textCourses, "Курсы"));
@@ -117,6 +121,7 @@ public class SearchPage {
         return this;
     }
 
+    @Step("Проверка отображения блока \"Вебинары\" и проверка количественного показателя (> 180 && < 300)")
     public SearchPage checkWebinars() {
         new WebDriverWait(driver, 30)
                 .until(ExpectedConditions.textToBePresentInElement(textWebinars, "Вебинары"));
@@ -131,6 +136,7 @@ public class SearchPage {
         return this;
     }
 
+    @Step("Проверка отображения блока \"Блоги\" и проверка количественного показателя (> 300)")
     public SearchPage checkBlogs() {
         new WebDriverWait(driver, 30)
                 .until(ExpectedConditions.textToBePresentInElement(textBlogs, "Блоги"));
@@ -145,6 +151,7 @@ public class SearchPage {
         return this;
     }
 
+    @Step("Проверка отображения блока \"Форум\" и проверка количественного показателя (!= 350)")
     public SearchPage checkForum() {
         new WebDriverWait(driver, 30)
                 .until(ExpectedConditions.textToBePresentInElement(textForum, "Форум"));
@@ -159,6 +166,7 @@ public class SearchPage {
         return this;
     }
 
+    @Step("Проверка отображения блока \"Тесты\" и проверка количественного показателя (!= 0)")
     public SearchPage checkTests() {
         new WebDriverWait(driver, 30)
                 .until(ExpectedConditions.textToBePresentInElement(textTests, "Тесты"));
@@ -169,11 +177,12 @@ public class SearchPage {
         String testsActual = countTests.getText();
         int countOfTests = Integer.parseInt(testsActual.trim());
         System.out.println("countOfTests = " + countOfTests);
-        assertThat(countOfTests, not(350));
+        assertThat(countOfTests, not(0));
 
         return this;
     }
 
+    @Step("Проверка отображения блока \"Проекты и компании\", а также проверка загрузки логотипа и текста карточки \"GeekBrains\" с последующим кликом на данную карточку")
     public void checkProjectsAndCompanies() {
         new WebDriverWait(driver, 30)
                 .until(ExpectedConditions.textToBePresentInElement(textProjectsAndCompanies, "Проекты и компании"));

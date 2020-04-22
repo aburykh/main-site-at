@@ -1,6 +1,7 @@
 package ru.geekbrains.main.site.at.base;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
@@ -14,6 +15,7 @@ public class BaseTest {
     protected WebDriver driver;
 
     @BeforeEach
+    @Step("Запуск браузера с выставленными параметрами")
     protected void setUp() {
 //        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         WebDriverManager.chromedriver().setup();
@@ -32,6 +34,7 @@ public class BaseTest {
     }
 
     @AfterEach
+    @Step("Закрытие браузера по окончании теста")
     void tearDown() {
         driver.quit();
     }

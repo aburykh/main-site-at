@@ -26,7 +26,7 @@ public class AuthorizationTest extends BaseTest {
     @Test
     @Issue(value = "https://google.com")
     @TmsLink(value = "https://ya.ru")
-    @Description(value = "Описание теста")
+    @Description(value = "Тест-кейс позволяет проверить авторизацию на портале с валидными данными с последующей проверкой загрузки страницы после авторизации")
     void checkSingInValidLogin() {
         String login = "hao17583@bcaoo.com";
         String password = "hao17583";

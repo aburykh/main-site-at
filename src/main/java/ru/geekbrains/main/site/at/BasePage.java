@@ -1,5 +1,6 @@
 package ru.geekbrains.main.site.at;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -27,11 +28,13 @@ public abstract class BasePage {
     @FindBy(css = "div button svg[class=\"svg-icon icon-popup-close-button \"]")
     private WebElement buttonPopUpClosed;
 
+    @Step("Закрытие Pop-UP окна")
     public BasePage closedPopUp() {
         buttonPopUpClosed.click();
         return this;
     }
 
+    @Step("Проверка загрузки заголовка страницы {exampleNamePage}")
     public BasePage checkNamePage(String exampleNamePage) {
         new WebDriverWait(driver, 30)
                 .until(ExpectedConditions.textToBePresentInElement(headerTitlePage, exampleNamePage));

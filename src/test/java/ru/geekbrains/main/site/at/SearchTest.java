@@ -1,5 +1,6 @@
 package ru.geekbrains.main.site.at;
 
+import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
@@ -18,6 +19,7 @@ public class SearchTest extends BaseTest {
 
     @Test
     @DisplayName("Тест поиска на портале GeekBrains по ключевому слову \"java\" ")
+    @Description(value = "Тест-кейс позволяет проверить работу поиска по ключевому слову, а также загрузку блоков страницы и элементов по, загружающихся по результатам поиска")
     void checkSearchTest() {
 
         driver.get("https://geekbrains.ru/career");

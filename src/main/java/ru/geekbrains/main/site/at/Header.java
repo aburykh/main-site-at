@@ -1,5 +1,6 @@
 package ru.geekbrains.main.site.at;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -57,6 +58,7 @@ public class Header {
 //    }
 
 
+    @Step("Проверка отображения элементов в Header'е")
     public void checkElementsInHeader() throws RuntimeException {
 //        String[] arr1 = {"Вход", "Регистрация"};
         getSearchIcon().isDisplayed();
