@@ -1,8 +1,6 @@
 package ru.geekbrains.main.site.at;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Issue;
-import io.qameta.allure.TmsLink;
+import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.parallel.Execution;
@@ -20,6 +18,8 @@ import ru.geekbrains.main.site.at.base.BaseTest;
 
 @Execution(ExecutionMode.CONCURRENT)
 @DisplayName("Проверка авторизации")
+@Feature(value = "Проверка авторизации")
+@Story(value = "Авторизация с валидными данными")
 public class AuthorizationTest extends BaseTest {
 
     @DisplayName("Вход с валидными логин/пароль")
