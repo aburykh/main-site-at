@@ -105,5 +105,7 @@ public class Start {
 
 
         //System.out.println(dog1.equals(cat));
+
+        System.out.println();
     }
 }
