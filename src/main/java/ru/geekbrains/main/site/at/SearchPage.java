@@ -82,6 +82,7 @@ public class SearchPage {
         buttonSearch.click();
         return PageFactory.initElements(driver, SearchPage.class);
     }
+
     @Step("Ввод в строку поиска ключевого слова \"java\"")
     public SearchPage inputSearch() {
         WebElement inputSearch = driver.findElement(By.cssSelector("input[class=\"search-panel__search-field\"]"));
