@@ -41,26 +41,9 @@ public class Header {
         return searchIcon;
     }
 
-//    public WebElement getHeaderPage() {
-//        return headerPage;
-//    }
-//
-//    public WebElement getButtonPopUpClosed() {
-//        return buttonPopUpClosed;
-//    }
-//
-//    public WebElement getCheckLoginInHeader() {
-//        return checkLoginInHeader;
-//    }
-//
-//    public WebElement getCheckRegisterInHeader() {
-//        return checkRegisterInHeader;
-//    }
-
 
     @Step("Проверка отображения элементов в Header'е")
     public void checkElementsInHeader() throws RuntimeException {
-//        String[] arr1 = {"Вход", "Регистрация"};
         getSearchIcon().isDisplayed();
 
         String loginInHeaderText = checkLoginInHeader.getText();

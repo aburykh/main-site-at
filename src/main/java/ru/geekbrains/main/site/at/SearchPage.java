@@ -16,12 +16,10 @@ import static org.hamcrest.Matchers.*;
 public class SearchPage {
 
     public SearchPage(WebDriver driver) {
-        //navigation = PageFactory.initElements(driver, Navigation.class);
         this.driver = driver;
     }
 
     protected WebDriver driver;
-    //private Navigation navigation;
 
     @FindBy(css = "[id=\"top-menu\"] [class=\"show-search-form\"] svg")
     private WebElement buttonSearch;

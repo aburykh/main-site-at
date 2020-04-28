@@ -17,7 +17,6 @@ public class BaseTest {
     @BeforeEach
     @Step("Запуск браузера с выставленными параметрами")
     protected void setUp() {
-//        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         WebDriverManager.chromedriver().setup();
 
         ChromeOptions options = new ChromeOptions();

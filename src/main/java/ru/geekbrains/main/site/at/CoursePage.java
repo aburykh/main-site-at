@@ -1,5 +1,6 @@
 package ru.geekbrains.main.site.at;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -14,19 +15,19 @@ public class CoursePage extends BasePage {
 
     private CourseHeader courseHeader;
 
+    @Step("Установка чек-боксов \"Бесплатные\" и \"Тестирование\"")
     public CoursePage configFilter(String... args) {
-        for (String test : args) {
-            //TODO после прохождения коллекций -переделать на коллекции
-            driver.findElement(By.xpath("//form/ul//label[text()='" + test + "']"))
+        for (String checkBox : args) {
+            driver.findElement(By.xpath("//form/ul//label[text()='" + checkBox + "']"))
                     .click();
         }
         return this;
     }
 
+    @Step("Проверка отображения в результатах курсов \"Тестирование ПО. Уровень 1\" и \"Тестирование ПО. Уровень 2\"")
     public CoursePage checkingDisplayedCourses(String... args) {
-        for (String test : args) {
-            //TODO после прохождения коллекций -переделать на коллекции
-            driver.findElement(By.xpath("//a/div/div/span[text()='" + test + "']"));
+        for (String searchResult : args) {
+            driver.findElement(By.xpath("//a/div/div/span[text()='" + searchResult + "']"));
         }
         return this;
     }

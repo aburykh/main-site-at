@@ -1,5 +1,6 @@
 package ru.geekbrains.main.site.at.block;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -28,6 +29,7 @@ public class CourseHeader {
 
     private WebDriver driver;
 
+    @Step("Проверка перехода в блок {nameButton}")
     public CoursePage clickButton(String nameButton) {
         switch (nameButton) {
             case "Профессии": {
