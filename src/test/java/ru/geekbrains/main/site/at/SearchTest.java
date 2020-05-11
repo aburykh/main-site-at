@@ -7,9 +7,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.geekbrains.main.site.at.base.BaseTest;
 import ru.geekbrains.main.site.at.block.SearchTabsBlock;
+import ru.geekbrains.main.site.at.page.content.TestPage;
+
+import static org.hamcrest.Matchers.*;
 
 
 @Execution(ExecutionMode.CONCURRENT)
@@ -24,18 +26,42 @@ public class SearchTest extends BaseTest {
     void checkSearchTest() {
 
         driver.get("https://geekbrains.ru/career");
-        WebDriverWait wait = new WebDriverWait(driver, 40);
+//        WebDriverWait wait = new WebDriverWait(driver, 40);
 
-        new SearchTabsBlock(driver)
-                .clickSearch()
-                .inputSearch()
-                .checkProfession()
-                .checkCourses()
-                .checkWebinars()
-                .checkBlogs()
-                .checkForum()
-                .checkTests()
-                .checkProjectsAndCompanies();
+//        new SearchTabsBlock(driver)
+//                .clickSearch()
+//                .inputSearch()
+//                .checkProfession()
+//                .checkCourses()
+//                .checkWebinars()
+//                .checkBlogs()
+//                .checkForum()
+//                .checkTests()
+//                .checkProjectsAndCompanies();
+        new TestPage(driver)
+                //Page page = new Page(driver)
+                .openUrl()
+                .getHeader()
+                //.clickSearch()
+                .inputSearch("java")
+                .getSearchTabsBlock()
+
+//                .openUrl()
+//                .getHeader()
+//                .searchText("java")
+//                .getSearchTabsBlock()
+
+
+                .checkCount(SearchTabsBlock
+                        .Tab
+                        .Professions,
+                        greaterThanOrEqualTo(2))
+                .checkCount(SearchTabsBlock.Tab.Courses, greaterThan(15))
+                .checkCount(SearchTabsBlock.Tab.Webinars, allOf(greaterThan(180), lessThan(300)))
+                .checkCount(SearchTabsBlock.Tab.Blogs, greaterThan(300))
+                .checkCount(SearchTabsBlock.Tab.Forums, not(350))
+                .checkCount(SearchTabsBlock.Tab.Tests, not(0))
+                .logoGB.click();
     }
 
 }

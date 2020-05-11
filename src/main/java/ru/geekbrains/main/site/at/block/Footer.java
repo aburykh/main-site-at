@@ -12,12 +12,7 @@ import static org.hamcrest.Matchers.equalToCompressingWhiteSpace;
 
 public class Footer extends BasePageObject {
 
-    public Footer(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(driver, this);
-    }
-
-    private Navigation navigation;
+    //private Navigation navigation;
 
 
     @FindBy(css = "[class=\"site-footer__icon\"] [class*=\"facebook\"]")
@@ -34,27 +29,6 @@ public class Footer extends BasePageObject {
 
     @FindBy(css = "[class=\"site-footer__icon\"] [class*=\"telegram\"]")
     private WebElement checkTelegramInFooter;
-
-
-    public WebElement getCheckFacebookInFooter() {
-        return checkFacebookInFooter;
-    }
-
-    public WebElement getCheckVkInFooter() {
-        return checkVkInFooter;
-    }
-
-    public WebElement getCheckInstagramInFooter() {
-        return checkInstagramInFooter;
-    }
-
-    public WebElement getCheckYoutubeInFooter() {
-        return checkYoutubeInFooter;
-    }
-
-    public WebElement getCheckTelegramInFooter() {
-        return checkTelegramInFooter;
-    }
 
 
     @FindBy(css = "[class*=\"footer__links_first-row\"] [href=\"/feedbacks\"]")
@@ -77,14 +51,40 @@ public class Footer extends BasePageObject {
     private WebElement checkForBusinessInFooter;
 
 
+    public Footer(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
+
+    /**
+     * //   c. В методе checkElementsInFooter –
+     * //    i. через гетеры в таком случае не надо обращаться к переменным. Они ведь в этом же классе.
+     * //    ii. .isDisplayed(); - этот метод он просто возвращает тру или фолс (есть элемент на странице или нет). Использовав его на элементах ты не делаешь проверку.
+     * <p>
+     * public boolean checkElementsIsDisplayed(boolean isDisplayed) {
+     * isDisplayed = true;
+     * if (checkFacebookInFooter.isDisplayed()
+     * && checkVkInFooter.isDisplayed() //return true;
+     * && checkVkInFooter.isDisplayed() //return true;
+     * && checkInstagramInFooter.isDisplayed() //return true;
+     * && checkYoutubeInFooter.isDisplayed() //return true;
+     * && checkTelegramInFooter.isDisplayed()) { //return true;
+     * return true;
+     * } else {
+     * return false;
+     * }
+     * }
+     */
+
+
     @Step("Проверка отображения элементов в Footer'е")
     public void checkElementsInFooter() throws RuntimeException {
 
-        getCheckFacebookInFooter().isDisplayed();
-        getCheckVkInFooter().isDisplayed();
-        getCheckInstagramInFooter().isDisplayed();
-        getCheckYoutubeInFooter().isDisplayed();
-        getCheckTelegramInFooter().isDisplayed();
+        checkFacebookInFooter.isDisplayed();
+        checkVkInFooter.isDisplayed();
+        checkInstagramInFooter.isDisplayed();
+        checkYoutubeInFooter.isDisplayed();
+        checkTelegramInFooter.isDisplayed();
 
 
         String feedbacksInFooterText = checkFeedbacksInFooter.getText();
@@ -106,5 +106,25 @@ public class Footer extends BasePageObject {
         assertThat(forBusinessInFooterText, equalToCompressingWhiteSpace("Компаниям"));
 
     }
+
+//    public WebElement getCheckFacebookInFooter() {
+//        return checkFacebookInFooter;
+//    }
+//
+//    public WebElement getCheckVkInFooter() {
+//        return checkVkInFooter;
+//    }
+//
+//    public WebElement getCheckInstagramInFooter() {
+//        return checkInstagramInFooter;
+//    }
+//
+//    public WebElement getCheckYoutubeInFooter() {
+//        return checkYoutubeInFooter;
+//    }
+//
+//    public WebElement getCheckTelegramInFooter() {
+//        return checkTelegramInFooter;
+//    }
 
 }

@@ -28,7 +28,7 @@ public abstract class BasePageObject {
                 return webElement;
             }
         }
-        throw new RuntimeException("В коллекции элементов: " + arrayList + "\nНе найден элемент с тектом: " + expectedText);
+        throw new RuntimeException("В коллекции элементов: " + arrayList + "\nНе найден элемент с текстом: " + expectedText);
     }
 
 }

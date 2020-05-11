@@ -14,6 +14,9 @@ import java.util.List;
 public class CoursePage extends BasePage {
 
 
+    private CourseHeader courseHeader;
+
+
     @FindBy(xpath = "//form/ul//label")
     private List<WebElement> filterList;
 
@@ -22,10 +25,16 @@ public class CoursePage extends BasePage {
 
     public CoursePage(WebDriver driver) {
         super(driver);
+        //this.courseHeader = PageFactory.initElements(driver, CourseHeader.class);
         this.courseHeader = PageFactory.initElements(driver, CourseHeader.class);
+        PageFactory.initElements(driver, this);
     }
 
-    private CourseHeader courseHeader;
+    @Override
+    public CoursePage openUrl() {
+        driver.get("https://geekbrains.ru/courses");
+        return this;
+    }
 
 
     @Step("Установка чек-боксов \"Бесплатные\" и \"Тестирование\"")
@@ -49,12 +58,6 @@ public class CoursePage extends BasePage {
 
     public CourseHeader getCourseHeader() {
         return courseHeader;
-    }
-
-    @Override
-    public CoursePage openUrl() {
-        driver.get("https://geekbrains.ru/courses");
-        return this;
     }
 
 }

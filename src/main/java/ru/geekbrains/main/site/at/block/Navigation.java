@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import ru.geekbrains.main.site.at.page.content.CoursePage;
 import ru.geekbrains.main.site.at.page.content.HomePage;
+import ru.geekbrains.main.site.at.page.content.TestPage;
 import ru.geekbrains.main.site.at.page.content.base.BasePage;
 
 public class Navigation {
@@ -37,44 +38,75 @@ public class Navigation {
 
     public Navigation(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
     @Step("Проверка нажатия на кнопку {nameButton}")
-    public BasePage clickButton(String nameButton) {
-        switch (nameButton) {
-            case "Главная": {
+    public BasePage clickButton(Button button) {
+        BasePage basePage = null;
+
+        switch (button) {
+            case icon:
                 icon.click();
-                return PageFactory.initElements(driver, HomePage.class);
-            }
-            case "Курсы": {
+                //return new HomePage(driver);
+                basePage = new HomePage(driver);
+                break;
+            //return PageFactory.initElements(driver, HomePage.class);
+            case buttonCourses:
                 buttonCourses.click();
-                return PageFactory.initElements(driver, CoursePage.class);
-            }
-            case "Вебинары": {
+                //return new CoursePage(driver);
+                basePage = new CoursePage(driver);
+                break;
+            //return PageFactory.initElements(driver, CoursePage.class);
+            case buttonEvents:
                 buttonEvents.click();
                 break;
-            }
-            case "Форум": {
+            case buttonTopics:
                 buttonTopics.click();
                 break;
-            }
-            case "Блог": {
+            case buttonPosts:
                 buttonPosts.click();
                 break;
-            }
-            case "Тесты": {
+            case buttonTests:
                 buttonTests.click();
+                basePage = new TestPage(driver);
                 break;
-            }
-            case "Карьера": {
+            case buttonCareer:
                 buttonCareer.click();
                 break;
-            }
-            default: {
-                throw new NotFoundException("Не найдена кнопка с именем: " + nameButton);
-            }
+            //            default: {
+//                throw new NotFoundException("Не найдена кнопка с именем: " + button.getName());
         }
 
-        return PageFactory.initElements(driver, HomePage.class);
+        if (null == basePage) {
+            throw new NotFoundException("Страница: " + button.getName() + " не описана!");
+        }
+
+        return basePage;
     }
+
+//        return new HomePage(driver);
+//        //return PageFactory.initElements(driver, HomePage.class);
+//    }
+
+    public enum Button {
+        icon("Главная"),
+        buttonCourses("Курсы"),
+        buttonEvents("Вебинары"),
+        buttonTopics("Форум"),
+        buttonPosts("Блог"),
+        buttonTests("Тесты"),
+        buttonCareer("Карьера");
+
+        private String name;
+
+        Button(String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
+        }
+    }
+
 }

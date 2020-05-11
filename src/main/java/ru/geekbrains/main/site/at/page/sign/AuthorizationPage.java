@@ -11,10 +11,6 @@ import ru.geekbrains.main.site.at.page.content.HomePage;
 
 public class AuthorizationPage extends BasePageObject implements OpenUrl {
 
-    public AuthorizationPage(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(driver, this);
-    }
 
     @FindBy(css = "[data-testid=\"login-email\"]")
     private WebElement inputLogin;
@@ -24,6 +20,12 @@ public class AuthorizationPage extends BasePageObject implements OpenUrl {
 
     @FindBy(css = "[data-testid=\"login-submit\"")
     private WebElement buttonSingInd;
+
+
+    public AuthorizationPage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver, this);
+    }
 
 
     @Step("авторизация с логином: {login} и паролем: {password}")

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;
 import ru.geekbrains.main.site.at.base.BaseTest;
+import ru.geekbrains.main.site.at.block.Navigation;
 import ru.geekbrains.main.site.at.page.content.CoursePage;
 import ru.geekbrains.main.site.at.page.sign.AuthorizationPage;
 
@@ -32,9 +33,11 @@ public class CourseTest extends BaseTest {
                         .authorization(login, password)
                         .checkNamePage("Главная")
                         .getNavigation()
-                        .clickButton("Курсы")
+                        .clickButton(Navigation.Button.buttonCourses)
         )
-                .getCourseHeader().clickButton("Курсы")
+                .getCourseHeader().clickButton("Курсы");
+
+        new CoursePage(driver)
                 .configFilter("Бесплатные", "Тестирование")
                 .checkingDisplayedCourses("Тестирование ПО. Уровень 1", "Тестирование ПО. Уровень 2");
     }

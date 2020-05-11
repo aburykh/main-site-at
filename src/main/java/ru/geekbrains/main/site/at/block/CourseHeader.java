@@ -6,12 +6,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import ru.geekbrains.main.site.at.page.content.CoursePage;
 
 public class CourseHeader {
 
     public CourseHeader(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
     @FindBy(css = "[class*=\"nav nav-tabs\"] [id=\"prof-link\"]")
@@ -30,7 +30,7 @@ public class CourseHeader {
     private WebDriver driver;
 
     @Step("Проверка перехода в блок {nameButton}")
-    public CoursePage clickButton(String nameButton) {
+    public CourseHeader clickButton(String nameButton) {
         switch (nameButton) {
             case "Профессии": {
                 buttonProfessions.click();
@@ -53,6 +53,6 @@ public class CourseHeader {
             }
         }
 
-        return PageFactory.initElements(driver, CoursePage.class);
+        return this;
     }
 }
