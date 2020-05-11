@@ -54,7 +54,6 @@ public class NavigationTest extends BaseTest {
                 .checkElementsInHeader();
 
         new Footer(driver)
-                //.checkElementsIsDisplayed()
                 .checkElementsInFooter();
     }
 

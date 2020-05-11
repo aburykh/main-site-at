@@ -8,7 +8,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import ru.geekbrains.main.site.at.page.content.CoursePage;
 import ru.geekbrains.main.site.at.page.content.HomePage;
-import ru.geekbrains.main.site.at.page.content.TestPage;
 import ru.geekbrains.main.site.at.page.content.base.BasePage;
 
 public class Navigation {
@@ -43,20 +42,20 @@ public class Navigation {
 
     @Step("Проверка нажатия на кнопку {nameButton}")
     public BasePage clickButton(Button button) {
-        BasePage basePage = null;
+        //BasePage basePage = null;
 
         switch (button) {
             case icon:
                 icon.click();
-                //return new HomePage(driver);
-                basePage = new HomePage(driver);
-                break;
+                return new HomePage(driver);
+                //basePage = new HomePage(driver);
+                //break;
             //return PageFactory.initElements(driver, HomePage.class);
             case buttonCourses:
                 buttonCourses.click();
-                //return new CoursePage(driver);
-                basePage = new CoursePage(driver);
-                break;
+                return new CoursePage(driver);
+                //basePage = new CoursePage(driver);
+                //break;
             //return PageFactory.initElements(driver, CoursePage.class);
             case buttonEvents:
                 buttonEvents.click();
@@ -69,20 +68,21 @@ public class Navigation {
                 break;
             case buttonTests:
                 buttonTests.click();
-                basePage = new TestPage(driver);
+                //basePage = new TestPage(driver);
                 break;
             case buttonCareer:
                 buttonCareer.click();
                 break;
-            //            default: {
-//                throw new NotFoundException("Не найдена кнопка с именем: " + button.getName());
+            default: {
+                throw new NotFoundException("Не найдена кнопка с именем: " + button.getName());
+            }
+
+//        if (null == basePage) {
+//            throw new NotFoundException("Страница: " + button.getName() + " не описана!");
         }
 
-        if (null == basePage) {
-            throw new NotFoundException("Страница: " + button.getName() + " не описана!");
-        }
-
-        return basePage;
+        //return basePage;
+        return new HomePage(driver);
     }
 
 //        return new HomePage(driver);

@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import ru.geekbrains.main.site.at.page.BasePageObject;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -56,36 +57,21 @@ public class Footer extends BasePageObject {
         PageFactory.initElements(driver, this);
     }
 
-    /**
-     * //   c. В методе checkElementsInFooter –
-     * //    i. через гетеры в таком случае не надо обращаться к переменным. Они ведь в этом же классе.
-     * //    ii. .isDisplayed(); - этот метод он просто возвращает тру или фолс (есть элемент на странице или нет). Использовав его на элементах ты не делаешь проверку.
-     * <p>
-     * public boolean checkElementsIsDisplayed(boolean isDisplayed) {
-     * isDisplayed = true;
-     * if (checkFacebookInFooter.isDisplayed()
-     * && checkVkInFooter.isDisplayed() //return true;
-     * && checkVkInFooter.isDisplayed() //return true;
-     * && checkInstagramInFooter.isDisplayed() //return true;
-     * && checkYoutubeInFooter.isDisplayed() //return true;
-     * && checkTelegramInFooter.isDisplayed()) { //return true;
-     * return true;
-     * } else {
-     * return false;
-     * }
-     * }
-     */
-
 
     @Step("Проверка отображения элементов в Footer'е")
     public void checkElementsInFooter() throws RuntimeException {
 
-        checkFacebookInFooter.isDisplayed();
-        checkVkInFooter.isDisplayed();
-        checkInstagramInFooter.isDisplayed();
-        checkYoutubeInFooter.isDisplayed();
-        checkTelegramInFooter.isDisplayed();
+//        checkFacebookInFooter.isDisplayed();
+//        checkVkInFooter.isDisplayed();
+//        checkInstagramInFooter.isDisplayed();
+//        checkYoutubeInFooter.isDisplayed();
+//        checkTelegramInFooter.isDisplayed();
 
+        wait10second.until(ExpectedConditions.visibilityOf(checkFacebookInFooter));
+        wait10second.until(ExpectedConditions.visibilityOf(checkVkInFooter));
+        wait10second.until(ExpectedConditions.visibilityOf(checkInstagramInFooter));
+        wait10second.until(ExpectedConditions.visibilityOf(checkYoutubeInFooter));
+        wait10second.until(ExpectedConditions.visibilityOf(checkTelegramInFooter));
 
         String feedbacksInFooterText = checkFeedbacksInFooter.getText();
         assertThat(feedbacksInFooterText, equalToCompressingWhiteSpace("Отзывы"));

@@ -48,7 +48,8 @@ public class Header extends BasePageObject {
 
     @Step("Проверка отображения элементов в Header'е")
     public void checkElementsInHeader() throws RuntimeException {
-        getSearchIcon().isDisplayed();
+        //getSearchIcon().isDisplayed();
+        wait10second.until(ExpectedConditions.visibilityOf(searchIcon));
 
         String loginInHeaderText = checkLoginInHeader.getText();
         assertThat(loginInHeaderText, equalToCompressingWhiteSpace("Вход"));
